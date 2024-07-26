@@ -1,7 +1,10 @@
+import main.com.app.AppManager;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello world!");
+        var app = new AppManager();
+        app.bootstrap();
     }
 }

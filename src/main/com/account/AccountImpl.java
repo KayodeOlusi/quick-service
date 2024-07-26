@@ -2,8 +2,9 @@ package main.com.account;
 
 import main.com.user.User;
 
-public interface IAccount
+public interface AccountImpl
 {
-    void addUser(User user);
+    void addBeneficiary(User user);
+
     void setBalance(int amount);
 }

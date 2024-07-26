@@ -5,7 +5,7 @@ import main.com.user.User;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Account implements IAccount
+public class Account implements AccountImpl
 {
     private int balance;
     private final List<User> beneficiaries = new ArrayList<User>();
@@ -17,7 +17,7 @@ public class Account implements IAccount
         this.balance = balance;
     }
 
-    public void addUser(User user)
+    public void addBeneficiary(User user)
     {
         this.beneficiaries.add(user);
     }
