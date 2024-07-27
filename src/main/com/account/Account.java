@@ -8,14 +8,7 @@ import java.util.ArrayList;
 public class Account implements AccountImpl
 {
     private int balance;
-    private final List<User> beneficiaries = new ArrayList<User>();
-
-    public Account() {}
-
-    public Account(int balance)
-    {
-        this.balance = balance;
-    }
+    private final List<User> beneficiaries = new ArrayList<>();
 
     public void addBeneficiary(User user)
     {

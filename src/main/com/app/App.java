@@ -9,8 +9,6 @@ public class App implements AppImpl
 {
     private User user;
 
-    public App() {}
-
     public void initializeApp()
     {
         System.out.println("Welcome to Quick Service !!!");
