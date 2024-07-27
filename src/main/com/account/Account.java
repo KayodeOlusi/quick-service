@@ -15,6 +15,16 @@ public class Account implements AccountImpl
         this.beneficiaries.add(user);
     }
 
+    public List<User> getBeneficiaries()
+    {
+        return beneficiaries;
+    }
+
+    public int getBalance()
+    {
+        return balance;
+    }
+
     public void setBalance(int amount)
     {
         this.balance = amount;
