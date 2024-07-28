@@ -3,10 +3,7 @@ package main.com.app;
 import main.com.service.Service;
 import main.com.user.User;
 
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class App implements AppImpl
 {
@@ -25,9 +22,15 @@ public class App implements AppImpl
                 "5. Check Transactions",
                 "6. Log out"
             };
+        List<Integer> allowedOptions = new ArrayList<>();
 
         home.addOptions(opts);
+        for (int i = 1; i <= 6; i++)
+            allowedOptions.add(i);
+        home.setAllowedOptions(allowedOptions);
+
         services.add(home);
+
         promptUserToPickService();
     }
 
