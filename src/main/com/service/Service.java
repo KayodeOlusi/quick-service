@@ -1,12 +1,16 @@
 package main.com.service;
 
+import main.com.app.App;
+
 import java.util.*;
 
 public class Service
 {
     private final String name;
 
-    private final List<Integer> allowedOptions = new ArrayList<>();
+    private final HashMap<Integer, Service> allowedOptions = new HashMap<>();
+
+    private final LinkedList<Service> serviceList = new LinkedList<>();
 
     private final ServiceOptions options = new ServiceOptions(new String[]{ });
 
@@ -39,7 +43,7 @@ public class Service
             validateSelectedOption(feedback, title);
         } catch (IllegalStateException | NoSuchElementException e)
         {
-            System.err.println("Please select a valid option" + e.getMessage());
+            System.err.println("Please select a valid option " + e.getMessage());
             showServicePrompt(title);
         }
     }
@@ -48,11 +52,9 @@ public class Service
     {
         try
         {
-            if (allowedOptions.contains(opt))
+            if (allowedOptions.containsKey(opt))
             {
-                // TODO: Continue when user selects option
-                System.out.println("🚀🚀🚀🚀🚀");
-                System.exit(1);
+                moveToNextService(opt);
             } else
             {
                 throw new IllegalArgumentException("Select a valid option from the list of options");
@@ -64,6 +66,12 @@ public class Service
         }
     }
 
+    public void moveToNextService(int opt)
+    {
+        var nextService = allowedOptions.get(opt);
+        App.getAppServices().add(nextService);
+    }
+
     public void addOptions(String[] opts)
     {
         for (String opt: opts)
@@ -72,8 +80,8 @@ public class Service
         }
     }
 
-    public void setAllowedOptions(List<Integer> opts)
+    public void setAllowedOptions(HashMap<Integer, Service> opts)
     {
-        this.allowedOptions.addAll(opts);
+        allowedOptions.putAll(opts);
     }
 }
