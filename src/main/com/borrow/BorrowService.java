@@ -17,17 +17,7 @@ public class BorrowService extends Service implements SubServiceimpl
         return opts;
     }
 
-    public BorrowService(String name)
-    {
-        super(name);
-    }
-
-    public void init()
-    {
-        prepareBaseMenu();
-    }
-
-    public void prepareBaseMenu()
+    private void prepareBaseMenu()
     {
         String[] opts = new String[]
             {
@@ -40,5 +30,15 @@ public class BorrowService extends Service implements SubServiceimpl
         this.setAllowedOptions(baseServiceOpts());
 
         this.showServicePrompt("Pick an option");
+    }
+
+    public BorrowService(String name)
+    {
+        super(name);
+    }
+
+    public void init()
+    {
+        prepareBaseMenu();
     }
 }

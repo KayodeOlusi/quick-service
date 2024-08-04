@@ -9,11 +9,13 @@ import main.com.transactions.TransactionsService;
 import main.com.transfer.TransferService;
 import main.com.user.User;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class App implements AppImpl
 {
-    private User user;
+    private static User user;
     private static Service baseService;
     private static final List<Service> services = new ArrayList<>();
 
@@ -40,27 +42,6 @@ public class App implements AppImpl
     private void promptUserToPickService()
     {
         baseService.showServicePrompt("What will you like to do today ?");
-        List<Service> serviceList;
-        synchronized (App.getAppServices())
-        {
-            serviceList = new ArrayList<>(App.getAppServices());
-        }
-
-        for (Service service : serviceList) {
-            if (service instanceof TransferService) {
-                // Handle TransferService
-            } else if (service instanceof AirtimeService) {
-                // Handle AirtimeService
-            } else if (service instanceof DataService) {
-                // Handle DataService
-            } else if (service instanceof BorrowService) {
-                ((BorrowService) service).init();
-            } else if (service instanceof TransactionsService) {
-                // Handle TransactionsService
-            } else if (service instanceof LogoutService) {
-                ((LogoutService) service).init();
-            }
-        }
     }
 
     private HashMap<Integer, Service> getBaseServicesOpts()
@@ -74,6 +55,11 @@ public class App implements AppImpl
         services.put(6, new LogoutService("Logout"));
 
         return services;
+    }
+
+    public static User getUser()
+    {
+        return user;
     }
 
     public static List<Service> getAppServices()

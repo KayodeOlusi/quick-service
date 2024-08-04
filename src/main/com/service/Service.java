@@ -1,6 +1,7 @@
 package main.com.service;
 
 import main.com.app.App;
+import main.com.generic.SubServiceimpl;
 
 import java.util.*;
 
@@ -26,8 +27,8 @@ public class Service
 
     public void showServicePrompt(String title)
     {
-        System.out.println("\n" + getName() + "\n");
-        System.out.println(title);
+        System.out.println("\n" + "• " + getName());
+        System.out.println("- " + title + "\n");
 
         var opts = options.getOptions();
         for (String opt: opts)
@@ -69,10 +70,10 @@ public class Service
     public void moveToNextService(int opt)
     {
         var nextService = allowedOptions.get(opt);
-        synchronized (App.getAppServices())
-        {
-            App.getAppServices().add(nextService);
+        if (nextService instanceof SubServiceimpl) {
+            ((SubServiceimpl) nextService).init();
         }
+        App.getAppServices().add(nextService);
     }
 
     public void addOptions(String[] opts)
