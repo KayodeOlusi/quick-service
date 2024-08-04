@@ -15,8 +15,7 @@ public class App implements AppImpl
 {
     private User user;
     private static Service baseService;
-
-    private static final LinkedList<Service> services = new LinkedList<>();
+    private static final List<Service> services = new ArrayList<>();
 
     private void prepareHomeScreenMenu()
     {
@@ -32,7 +31,7 @@ public class App implements AppImpl
             };
 
         home.addOptions(opts);
-        home.setAllowedOptions(getBaseServices());
+        home.setAllowedOptions(getBaseServicesOpts());
 
         baseService = home;
         promptUserToPickService();
@@ -40,31 +39,31 @@ public class App implements AppImpl
 
     private void promptUserToPickService()
     {
-       baseService.showServicePrompt("What will you like to do today ?");
-       services.forEach(service -> {
-           if (service instanceof TransferService)
-           {
+        baseService.showServicePrompt("What will you like to do today ?");
+        List<Service> serviceList;
+        synchronized (App.getAppServices())
+        {
+            serviceList = new ArrayList<>(App.getAppServices());
+        }
 
-           } else if (service instanceof AirtimeService)
-           {
-
-           } else if (service instanceof DataService)
-           {
-
-           } else if (service instanceof BorrowService)
-           {
-
-           } else if (service instanceof  TransactionsService)
-           {
-
-           } else if (service instanceof LogoutService)
-           {
-               ((LogoutService) service).init();
-           }
-       });
+        for (Service service : serviceList) {
+            if (service instanceof TransferService) {
+                // Handle TransferService
+            } else if (service instanceof AirtimeService) {
+                // Handle AirtimeService
+            } else if (service instanceof DataService) {
+                // Handle DataService
+            } else if (service instanceof BorrowService) {
+                ((BorrowService) service).init();
+            } else if (service instanceof TransactionsService) {
+                // Handle TransactionsService
+            } else if (service instanceof LogoutService) {
+                ((LogoutService) service).init();
+            }
+        }
     }
 
-    private HashMap<Integer, Service> getBaseServices()
+    private HashMap<Integer, Service> getBaseServicesOpts()
     {
         var services = new HashMap<Integer, Service>();
         services.put(1, new TransferService("Transfer to beneficiary"));
@@ -77,7 +76,7 @@ public class App implements AppImpl
         return services;
     }
 
-    public static LinkedList<Service> getAppServices()
+    public static List<Service> getAppServices()
     {
         return services;
     }
