@@ -17,7 +17,7 @@ public class App implements AppImpl
 {
     private static User user;
     private static Service baseService;
-    private static final List<Service> services = new ArrayList<>();
+    private static final Stack<Service> services = new Stack<>();
 
     private void prepareHomeScreenMenu()
     {
@@ -62,7 +62,7 @@ public class App implements AppImpl
         return user;
     }
 
-    public static List<Service> getAppServices()
+    public static Stack<Service> getAppServices()
     {
         return services;
     }

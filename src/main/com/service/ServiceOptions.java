@@ -10,16 +10,21 @@ public class ServiceOptions
 
     public ServiceOptions(String[] opts)
     {
-        this.options.addAll(Arrays.asList(opts));
+        options.addAll(Arrays.asList(opts));
     }
 
     public void addOption(String opt)
     {
-        this.options.add(opt);
+        options.add(opt);
+    }
+
+    public void clearOptions()
+    {
+        options.clear();
     }
 
     public List<String> getOptions()
     {
-        return this.options;
+        return options;
     }
 }

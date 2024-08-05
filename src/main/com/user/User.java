@@ -1,14 +1,19 @@
 package main.com.user;
 
 import main.com.account.Account;
+import main.com.transactions.Transaction;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Account implements UserImpl
 {
     private final String name;
     private final String password;
+
+    private final List<Transaction> transactions = new ArrayList<>();
 
     private String hashPassword(String pwd)
     {
@@ -42,6 +47,16 @@ public class User extends Account implements UserImpl
     public String getName()
     {
         return name;
+    }
+
+    public List<Transaction> getTransactions()
+    {
+        return transactions;
+    }
+
+    public void addTransaction(Transaction t)
+    {
+        transactions.add(t);
     }
 
     public boolean verifyPassword(String pwd)

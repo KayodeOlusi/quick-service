@@ -3,6 +3,7 @@ package main.com.borrow;
 import main.com.app.App;
 import main.com.generic.SubServiceimpl;
 import main.com.service.Service;
+import main.com.transactions.Transaction;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -21,14 +22,8 @@ public class BorrowPointsService extends Service implements SubServiceimpl
             if (!App.getUser().verifyPassword(password))
                 throw new IllegalStateException("Please input your correct password");
 
-            int userBalance = App.getUser().getBalance();
-            App.getUser().setBalance(userBalance + amount);
-
-            /*
-               TODO:
-                - Create Transaction with LOAN status
-                - Go back to homepage
-            * */
+            createNewBorrowTransaction(amount);
+            goToPreviousMenu();
         } catch (IllegalStateException | NoSuchElementException e)
         {
             System.err.println("Incorrect Password. " + e.getMessage());
@@ -36,7 +31,56 @@ public class BorrowPointsService extends Service implements SubServiceimpl
         }
     }
 
-    private void recordBorrowAmount()
+    private boolean hasUserBorrowedThreePointsInTotal()
+    {
+        int borrowCount = 0;
+        var userTransactions = App.getUser().getTransactions();
+
+        for (Transaction t : userTransactions)
+        {
+            if (t.type().equals("BORROW"))
+                borrowCount += 1;
+        }
+
+        return borrowCount == 3;
+    }
+
+    private void goToPreviousMenu()
+    {
+        var serviceList = App.getAppServices();
+        serviceList.pop();
+
+        Service prevService = serviceList.peek();
+
+        if (prevService instanceof SubServiceimpl)
+            ((SubServiceimpl) prevService).init();
+    }
+
+    private void checkForEligibility()
+    {
+        boolean isNotEligibleToBorrow = hasUserBorrowedThreePointsInTotal();
+        if (isNotEligibleToBorrow)
+        {
+            System.err.println("You have passed your borrow limit. Repay all your outstanding debt to proceed");
+            goToPreviousMenu();
+        } else
+        {
+            initializeBorrowPointsAction();
+        }
+    }
+
+    private void createNewBorrowTransaction(int amount)
+    {
+        int userBalance = App.getUser().getBalance();
+        App.getUser().setBalance(userBalance + amount);
+
+        var transaction = new Transaction("Borrowed Points", amount, "BORROW");
+        App.getUser().addTransaction(transaction);
+
+        System.out.println("You have successfully borrowed " + amount + " points" + "\n");
+    }
+
+    private void initializeBorrowPointsAction()
     {
         try
         {
@@ -53,7 +97,7 @@ public class BorrowPointsService extends Service implements SubServiceimpl
         } catch (IllegalStateException | NoSuchElementException e)
         {
             System.err.println("Please input a valid amount. " + e.getMessage());
-            recordBorrowAmount();
+            initializeBorrowPointsAction();
         }
     }
 
@@ -64,6 +108,6 @@ public class BorrowPointsService extends Service implements SubServiceimpl
 
     public void init()
     {
-        recordBorrowAmount();
+        checkForEligibility();
     }
 }

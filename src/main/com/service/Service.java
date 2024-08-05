@@ -36,6 +36,8 @@ public class Service
             System.out.println(opt);
         }
 
+        options.clearOptions();
+
         try
         {
             Scanner in = new Scanner(System.in);
@@ -70,10 +72,10 @@ public class Service
     public void moveToNextService(int opt)
     {
         var nextService = allowedOptions.get(opt);
+        App.getAppServices().add(nextService);
         if (nextService instanceof SubServiceimpl) {
             ((SubServiceimpl) nextService).init();
         }
-        App.getAppServices().add(nextService);
     }
 
     public void addOptions(String[] opts)
