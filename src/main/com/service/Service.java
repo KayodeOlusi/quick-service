@@ -11,8 +11,6 @@ public class Service
 
     private final HashMap<Integer, Service> allowedOptions = new HashMap<>();
 
-    private final LinkedList<Service> serviceList = new LinkedList<>();
-
     private final ServiceOptions options = new ServiceOptions(new String[]{ });
 
     public Service(String name)
