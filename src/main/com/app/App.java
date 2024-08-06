@@ -19,32 +19,12 @@ public class App implements AppImpl
     private static Service baseService;
     private static final Stack<Service> services = new Stack<>();
 
-    private void prepareHomeScreenMenu()
-    {
-        Service home = new Service("Home");
-        String[] opts = new String[]
-            {
-                "1. Transfer points to beneficiary",
-                "2. Buy Airtime",
-                "3. Buy Data",
-                "4. Borrow points",
-                "5. Check Transactions",
-                "6. Log out"
-            };
-
-        home.addOptions(opts);
-        home.setAllowedOptions(getBaseServicesOpts());
-
-        baseService = home;
-        promptUserToPickService();
-    }
-
-    private void promptUserToPickService()
+    private static void promptUserToPickService()
     {
         baseService.showServicePrompt("What will you like to do today ?");
     }
 
-    private HashMap<Integer, Service> getBaseServicesOpts()
+    private static HashMap<Integer, Service> getBaseServicesOpts()
     {
         var services = new HashMap<Integer, Service>();
         services.put(1, new TransferService("Transfer to beneficiary"));
@@ -71,6 +51,26 @@ public class App implements AppImpl
     {
         System.out.println("Welcome to Quick Service !!!");
         prepareUserAccount();
+    }
+
+    public static void prepareHomeScreenMenu()
+    {
+        Service home = new Service("Home");
+        String[] opts = new String[]
+            {
+                "1. Transfer points to beneficiary",
+                "2. Buy Airtime",
+                "3. Buy Data",
+                "4. Borrow points",
+                "5. Check Transactions",
+                "6. Log out"
+            };
+
+        home.addOptions(opts);
+        home.setAllowedOptions(getBaseServicesOpts());
+
+        baseService = home;
+        promptUserToPickService();
     }
 
     public void prepareUserAccount()

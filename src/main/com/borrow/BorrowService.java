@@ -1,5 +1,6 @@
 package main.com.borrow;
 
+import main.com.generic.GoBackService;
 import main.com.generic.SubServiceimpl;
 import main.com.service.Service;
 
@@ -13,6 +14,7 @@ public class BorrowService extends Service implements SubServiceimpl
 
         opts.put(1, new BorrowPointsService("Borrow Points"));
         opts.put(2, new RepayBorrowedPointsService("Repay Borrowed Points"));
+        opts.put(3, new GoBackService("Back"));
 
         return opts;
     }

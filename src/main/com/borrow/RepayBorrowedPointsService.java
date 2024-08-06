@@ -66,11 +66,7 @@ public class RepayBorrowedPointsService extends Service implements SubServiceimp
         {
             System.err.println("You cannot refund more than you have borrowed");
             startRepayOperation();
-        } else if (amount < 50)
-        {
-            System.err.println("You cannot refund less than 50 points");
-            startRepayOperation();
-        }  else
+        } else
         {
             repayBorrowedPoints(amount);
         }
