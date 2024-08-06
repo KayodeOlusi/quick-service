@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Account implements AccountImpl
 {
-    private int balance;
+    private float balance;
     private final List<User> beneficiaries = new ArrayList<>();
 
     public void addBeneficiary(User user)
@@ -20,12 +20,12 @@ public class Account implements AccountImpl
         return beneficiaries;
     }
 
-    public int getBalance()
+    public float getBalance()
     {
         return balance;
     }
 
-    public void setBalance(int amount)
+    public void setBalance(float amount)
     {
         this.balance = amount;
     }

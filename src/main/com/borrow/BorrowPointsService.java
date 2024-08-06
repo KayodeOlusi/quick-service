@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class BorrowPointsService extends Service implements SubServiceimpl
 {
-    private void validateUserPassword(int amount)
+    private void validateUserPassword(float amount)
     {
         try
         {
@@ -69,9 +69,9 @@ public class BorrowPointsService extends Service implements SubServiceimpl
         }
     }
 
-    private void createNewBorrowTransaction(int amount)
+    private void createNewBorrowTransaction(float amount)
     {
-        int userBalance = App.getUser().getBalance();
+        float userBalance = App.getUser().getBalance();
         App.getUser().setBalance(userBalance + amount);
 
         var transaction = new Transaction("Borrowed Points", amount, "BORROW");
@@ -88,7 +88,7 @@ public class BorrowPointsService extends Service implements SubServiceimpl
             System.out.println("- Input the amount you will like to borrow");
 
             Scanner in = new Scanner(System.in);
-            int amount = in.nextInt();
+            float amount = in.nextFloat();
 
             if (amount < 100)
                 throw new IllegalStateException("You cannot borrow less than 100 points");

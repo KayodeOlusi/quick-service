@@ -8,9 +8,9 @@ public interface AccountImpl
 {
     void addBeneficiary(User user);
 
-    void setBalance(int amount);
+    void setBalance(float amount);
 
     List<User> getBeneficiaries();
 
-    int getBalance();
+    float getBalance();
 }
