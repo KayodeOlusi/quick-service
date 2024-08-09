@@ -1,14 +1,14 @@
 package main.com.borrow;
 
 import main.com.app.App;
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 import main.com.service.Service;
 import main.com.transactions.Transaction;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class BorrowPointsService extends Service implements SubServiceimpl
+public class BorrowPointsService extends Service implements SubServiceImpl
 {
     private void validateUserPassword(float amount)
     {
@@ -52,8 +52,8 @@ public class BorrowPointsService extends Service implements SubServiceimpl
 
         Service prevService = serviceList.peek();
 
-        if (prevService instanceof SubServiceimpl)
-            ((SubServiceimpl) prevService).init();
+        if (prevService instanceof SubServiceImpl)
+            ((SubServiceImpl) prevService).init();
     }
 
     private void checkForEligibility()

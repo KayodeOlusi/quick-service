@@ -1,7 +1,7 @@
 package main.com.service;
 
 import main.com.app.App;
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 
 import java.util.*;
 
@@ -71,8 +71,8 @@ public class Service
     {
         var nextService = allowedOptions.get(opt);
         App.getAppServices().add(nextService);
-        if (nextService instanceof SubServiceimpl) {
-            ((SubServiceimpl) nextService).init();
+        if (nextService instanceof SubServiceImpl) {
+            ((SubServiceImpl) nextService).init();
         }
     }
 

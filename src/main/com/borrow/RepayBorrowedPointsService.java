@@ -1,13 +1,13 @@
 package main.com.borrow;
 
 import main.com.app.App;
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 import main.com.service.Service;
 import main.com.transactions.Transaction;
 
 import java.util.Scanner;
 
-public class RepayBorrowedPointsService extends Service implements SubServiceimpl
+public class RepayBorrowedPointsService extends Service implements SubServiceImpl
 {
     private float getUserBalance()
     {
@@ -92,8 +92,8 @@ public class RepayBorrowedPointsService extends Service implements SubServiceimp
 
         Service prevService = serviceList.peek();
 
-        if (prevService instanceof SubServiceimpl)
-            ((SubServiceimpl) prevService).init();
+        if (prevService instanceof SubServiceImpl)
+            ((SubServiceImpl) prevService).init();
     }
 
     public RepayBorrowedPointsService(String name)

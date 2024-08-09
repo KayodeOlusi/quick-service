@@ -3,7 +3,7 @@ package main.com.generic;
 import main.com.app.App;
 import main.com.service.Service;
 
-public class GoBackService extends Service implements SubServiceimpl
+public class GoBackService extends Service implements SubServiceImpl
 {
     private void goToPreviousMenu()
     {
@@ -17,8 +17,8 @@ public class GoBackService extends Service implements SubServiceimpl
         } else
         {
             Service prevService = services.peek();
-            if (prevService instanceof SubServiceimpl)
-                ((SubServiceimpl) prevService).init();
+            if (prevService instanceof SubServiceImpl)
+                ((SubServiceImpl) prevService).init();
         }
     }
 

@@ -1,9 +1,9 @@
 package main.com.logout;
 
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 import main.com.service.Service;
 
-public class LogoutService extends Service implements SubServiceimpl
+public class LogoutService extends Service implements SubServiceImpl
 {
     public LogoutService(String name)
     {

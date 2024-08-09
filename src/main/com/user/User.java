@@ -11,7 +11,7 @@ import java.util.List;
 public class User extends Account implements UserImpl
 {
     private final String name;
-    private final String password;
+    private String password;
 
     private final List<Transaction> transactions = new ArrayList<>();
 
@@ -42,6 +42,12 @@ public class User extends Account implements UserImpl
         super();
         this.name = name;
         this.password = hashPassword(password);
+    }
+
+    public User (String name)
+    {
+        super();
+        this.name = name;
     }
 
     public String getName()

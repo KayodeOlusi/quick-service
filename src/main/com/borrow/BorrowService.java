@@ -1,12 +1,12 @@
 package main.com.borrow;
 
 import main.com.generic.GoBackService;
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 import main.com.service.Service;
 
 import java.util.HashMap;
 
-public class BorrowService extends Service implements SubServiceimpl
+public class BorrowService extends Service implements SubServiceImpl
 {
     private HashMap<Integer, Service> baseServiceOpts()
     {

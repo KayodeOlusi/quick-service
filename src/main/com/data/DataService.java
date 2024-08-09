@@ -1,9 +1,9 @@
 package main.com.data;
 
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 import main.com.service.Service;
 
-public class DataService extends Service implements SubServiceimpl
+public class DataService extends Service implements SubServiceImpl
 {
     public DataService(String name)
     {

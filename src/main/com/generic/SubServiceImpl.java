@@ -1,6 +1,6 @@
 package main.com.generic;
 
-public interface SubServiceimpl
+public interface SubServiceImpl
 {
     void init();
 }

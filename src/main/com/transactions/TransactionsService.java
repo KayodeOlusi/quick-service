@@ -2,13 +2,13 @@ package main.com.transactions;
 
 import main.com.app.App;
 import main.com.generic.GoBackService;
-import main.com.generic.SubServiceimpl;
+import main.com.generic.SubServiceImpl;
 import main.com.service.Service;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class TransactionsService extends Service implements SubServiceimpl
+public class TransactionsService extends Service implements SubServiceImpl
 {
     private List<Transaction> getAllTransactions()
     {
