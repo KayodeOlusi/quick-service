@@ -14,7 +14,8 @@ public class TransferService extends Service implements SubServiceImpl
 
         opts.put(1, new TransferToBeneficiaryService("Transfer to beneficiary"));
         opts.put(2, new AddBeneficiaryService("Add a beneficiary"));
-        opts.put(3, new GoBackService("Back"));
+        opts.put(3, new ListBeneficiariesService("List all beneficiaries"));
+        opts.put(4, new GoBackService("Back"));
 
         return opts;
     }
@@ -25,7 +26,8 @@ public class TransferService extends Service implements SubServiceImpl
             {
               "1. Transfer Points",
               "2. Add Beneficiary",
-              "3. Back"
+              "3. List Beneficiaries",
+              "4. Back"
             };
 
         this.addOptions(opts);
