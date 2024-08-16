@@ -12,7 +12,7 @@ public class AddBeneficiaryService extends Service implements SubServiceImpl
 {
     private void showAddBeneficiaryPrompt()
     {
-        System.out.println("• Input the name od the beneficiary");
+        System.out.println("• Input the name of the beneficiary");
 
         try
         {
