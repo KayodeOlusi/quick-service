@@ -1,4 +1,4 @@
-package main.com.account;
+package main.com.user.account;
 
 import main.com.user.User;
 

@@ -1,6 +1,6 @@
 package main.com.user;
 
-import main.com.account.Account;
+import main.com.user.account.Account;
 import main.com.transactions.Transaction;
 
 import java.security.MessageDigest;

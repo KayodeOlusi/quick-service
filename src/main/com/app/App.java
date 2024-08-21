@@ -1,16 +1,13 @@
 package main.com.app;
 
-import main.com.airtime.AirtimeService;
+import main.com.account.AccountStatementService;
 import main.com.borrow.BorrowService;
-import main.com.data.DataService;
 import main.com.logout.LogoutService;
 import main.com.service.Service;
 import main.com.transactions.TransactionsService;
 import main.com.transfer.TransferService;
 import main.com.user.User;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class App implements AppImpl
@@ -28,11 +25,10 @@ public class App implements AppImpl
     {
         var services = new HashMap<Integer, Service>();
         services.put(1, new TransferService("Transfer to beneficiary"));
-        services.put(2, new AirtimeService("Buy Airtime"));
-        services.put(3, new DataService("Buy Data"));
-        services.put(4, new BorrowService("Borrow points"));
-        services.put(5, new TransactionsService("Check Transactions"));
-        services.put(6, new LogoutService("Logout"));
+        services.put(2, new BorrowService("Borrow points"));
+        services.put(3, new TransactionsService("Check Transactions"));
+        services.put(4, new AccountStatementService("View Account Statement"));
+        services.put(5, new LogoutService("Logout"));
 
         return services;
     }
@@ -59,11 +55,10 @@ public class App implements AppImpl
         String[] opts = new String[]
             {
                 "1. Transfer points to beneficiary",
-                "2. Buy Airtime",
-                "3. Buy Data",
-                "4. Borrow points",
-                "5. Check Transactions",
-                "6. Log out"
+                "2. Borrow points",
+                "3. Check Transactions",
+                "4. Account Statement",
+                "5. Log out"
             };
 
         home.addOptions(opts);
