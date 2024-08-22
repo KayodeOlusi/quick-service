@@ -45,11 +45,14 @@ public class TransferToBeneficiaryService extends Service implements SubServiceI
         var selectedBeneficiary = validBeneficiaries.get(option);
         var ben = App.getUser().getBeneficiaries().get(option - 1);
         float balance = ben.getBalance();
+        float userBalance = App.getUser().getBalance();
 
         if (selectedBeneficiary.getName().equals(ben.getName()))
         {
             ben.setBalance(amount + balance);
             createTransferTransaction(amount, ben);
+
+            App.getUser().setBalance(userBalance - amount);
 
             System.out.println("\n" +"You have successfully sent " + amount + " points to " + ben.getName());
             goToPreviousMenu();
